@@ -85,6 +85,12 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
+
+        <v-btn href="/practice/modeling">라우팅1</v-btn> 
+        <v-btn :to="{path: '/practive/modeling'}">SPA라우팅2(router기능 활용)</v-btn>
+        <v-btn :to="{name: 'ModelingComponent'}">SPA라우팅3(name호출 활용)</v-btn>
+        <!-- href 방식, spa방식, name방식으로 호출할 수 있다. -->
+         <!-- 데이터변경없을때는 spa 방식 사용(제일많이 쓺),  -->
 </template>
 <script>
     export default {
