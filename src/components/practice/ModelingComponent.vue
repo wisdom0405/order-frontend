@@ -24,6 +24,7 @@
 export default{
     data() {
         return{
+            // 변수정의
             language:"python",
             value1:" python",
             value2:" java",
@@ -38,6 +39,9 @@ export default{
             // count값이 바뀌면 추적하여 doubleCount값에 변화가 생김
             return this.count * 2; 
         }
+    },
+    created(){
+        alert("CREATED 함수 호출")
     },
     methods:{
         showValue(){

@@ -32,6 +32,8 @@
             }
         },
         async created() {
+            // 화면이 열리기전에 데이터 받아옴
+            // axios : async - await
             const response = await axios.get('http://localhost:8080/rest/member/list')
             this.memberList = response.data
             console.log(response.data);

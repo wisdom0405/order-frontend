@@ -1,7 +1,40 @@
 <template>
-    <h1> this is header compoent </h1>
+    <v-app-bar app dark>
+        <v-container>
+            <v-row align="center">
+                <v-col class="d-flex justify-start">
+                    <div v-if="userRole === 'ADMIN'">
+                    <!-- 왼쪽 정렬 -->
+                    <v-btn :to="{path:'/member/list'}">회원관리</v-btn>
+                    <v-btn :to="{path:'/product/manage'}">상품관리</v-btn>
+                    <v-btn :to="{path:'/order/list'}">실시간주문</v-btn>
+                    </div>
+                </v-col>
+                <v-col class="text-center">
+                    <!-- 가운데 정렬 -->
+                    <v-btn :to="{path:'/'}">java shop</v-btn>
+                </v-col>
+                <v-col class="d-flex justify-end">
+                    <!-- 오른쪽 정렬 -->
+                    <v-btn v-if="isLogin" :to="{path:'/ordercart'}">장바구니</v-btn>
+                    <v-btn :to="{path:'/product/list'}">상품목록</v-btn>
+                    <v-btn v-if="isLogin" :to="{path:'/mypage'}">마이페이지</v-btn>
+                    <v-btn v-if="!isLogin" :to="{path:'/member/create'}">회원가입</v-btn>
+                    <v-btn v-if="!isLogin" :to="{path:'/login'}">로그인</v-btn>
+                    <v-btn v-if="isLogin" :to="{path:'/logout'}">로그아웃</v-btn>
+                </v-col>
+            </v-row>
+        </v-container>
+    </v-app-bar>
 </template>
 
 <script>
-export default {};
+export default {
+    data(){
+        return{
+            userRole: null,
+            isLogin: false
+        }
+    }
+};
 </script>

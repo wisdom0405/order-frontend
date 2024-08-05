@@ -14,6 +14,7 @@ export default{
         }
     },
     // 화면이 열리기 전(vue인스턴스가 생성되기 이전)에 실행되는 함수
+    // 화면이 그려지기 전
     created(){
         this.data2 = "변경된 데이터2";
     },
@@ -21,6 +22,7 @@ export default{
         window.addEventListener('resize', this.resize);
     },
     // vue의 컴포넌트들이 DOM에 마운트된 이후(화면이 모두 그려진 이후)에 실행되는 함수
+    // html요소들이 그려진 이후 실행
     mounted(){
         console.log("화면이 그려진 이후에 출력");
         this.data3 = "변경된 데이터3";

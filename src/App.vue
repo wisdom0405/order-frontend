@@ -1,7 +1,7 @@
 <template>
 <!-- router-view를 통해 app.vue에서 화면 라우팅 : router-view라는 이름으로 꼭 써야 함 -->
-  <!-- <HeaderComponet /> -->
   <v-app>
+    <HeaderComponet />
     <v-main>
       <router-view />
     </v-main>
@@ -15,13 +15,14 @@
 <script>
 // App.vue는 Vue 애플리케이션의 루트 컴포넌트(재활용이 가능한 화면)
 // import HelloWorld from './components/HelloWorld.vue'
-// import HeaderComponet from './components/HeaderComponent.vue'
+import HeaderComponet from './components/HeaderComponent.vue'
 // import FooterComponet from './components/FooterComponent.vue'
 
 export default {
   name: 'App',
   components: {
-    // HeaderComponet, FooterComponet
+    HeaderComponet
+    // FooterComponet
   }
 }
 </script>

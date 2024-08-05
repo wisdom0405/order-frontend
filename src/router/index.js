@@ -18,10 +18,13 @@ const routes = [
     //     name: 'TEST',
     //     component: TestComponent // component명은 반드시 2개이상의 camelcase로 이루어져야 함
     // }
-    ...practiceRouter
+
     // practiceRouter.js파일을 갖다가 복사붙여넣기 한 것과 똑같은 효과(스프레드 문법)
+    ...practiceRouter,
+    ...memberRouter
 ]
 import { practiceRouter } from './practiceRouter';
+import { memberRouter } from './memberRouter';
 const router = createRouter({
     // vue router는 내부적으로 두가지 방식의 히스토리 관리를 제공
     // 1) createWebHistory : /home, 2) createHashHistory : /#/home
