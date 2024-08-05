@@ -1,5 +1,7 @@
 // 화면 import
-import MemberCreate from '@/views/MemberCreate.vue';
+import MemberCreate from '@/views/MemberCreate.vue'
+import LoginPage from '@/views/LoginPage.vue'
+import MemberList from '@/views/MemberList.vue'
 
 export const memberRouter = [
     {
@@ -7,4 +9,14 @@ export const memberRouter = [
         name: 'MemberCreate',
         component: MemberCreate
     },
+    {
+        path: '/login',
+        name: 'LoginPage',
+        component: LoginPage
+    },
+    {
+        path: '/member/list',
+        name: "MemberList",
+        component: MemberList
+    }
 ];

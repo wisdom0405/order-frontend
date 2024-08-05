@@ -21,7 +21,7 @@
                     <v-btn v-if="isLogin" :to="{path:'/mypage'}">마이페이지</v-btn>
                     <v-btn v-if="!isLogin" :to="{path:'/member/create'}">회원가입</v-btn>
                     <v-btn v-if="!isLogin" :to="{path:'/login'}">로그인</v-btn>
-                    <v-btn v-if="isLogin" :to="{path:'/logout'}">로그아웃</v-btn>
+                    <v-btn v-if="isLogin" @click="doLogout">로그아웃</v-btn>
                 </v-col>
             </v-row>
         </v-container>
@@ -34,6 +34,20 @@ export default {
         return{
             userRole: null,
             isLogin: false
+        }
+    },
+    created(){
+        // 현재 로그인한 사용자가 일반user인지 admin인지 확인하기 위해서 created될때 localStorage
+        const token = localStorage.getItem("token");
+        if(token){
+            this.isLogin = true;
+            this.userRole = localStorage.getItem("role");
+        }
+    },
+    methods:{
+        doLogout(){
+            localStorage.clear(); // localStorage에 저장된 토큰, user정보 삭제
+            window.location.reload(); // 재시작
         }
     }
 };

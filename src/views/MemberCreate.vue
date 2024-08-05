@@ -68,6 +68,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     data(){
         return{
@@ -80,8 +81,27 @@ export default {
         }
     },
     methods:{
-        memberCreate(){
-
+        async memberCreate(){
+            try{
+                const registerData = {
+                name: this.name,
+                email: this.email,
+                password: this.password,
+                address:{
+                    city: this.city,
+                    street: this.street,
+                    zipcode: this.zipcode
+                }
+            }
+            // axios는 비동기함수이므로 async-await 해주지 않으면 .push먼저 동작함
+            await axios.post(`${process.env.VUE_APP_API_BASE_URL}/member/create`, registerData);
+            this.$router.push("/");
+            }catch(e){
+                // 이메일중복, 비밀번호 길이 예외
+                const error_message = e.response.data.error_message;
+                console.log(error_message);
+                alert(error_message);
+            }
         }
     }
 }
