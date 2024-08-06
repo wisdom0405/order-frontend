@@ -32,12 +32,16 @@ export default{
         }
     },
     async created(){
-        const token = localStorage.getItem('token');
-        const headers = {Authorization : `Bearer ${token}`}
+        // const token = localStorage.getItem('token');
+        // const headers = {Authorization : `Bearer ${token}`}
         // 이런형식의 토큰이 들어간다
         // "headers" : {Authorization: 'Bearer 토큰값'}, key와 value 값이 똑같을 때 {"headers": headers}랑 {headers}랑 같음
-        const response = await axios.get(`${process.env.VUE_APP_API_BASE_URL}/member/list`, {headers}); // {headers: headers}가 들어간 것과 같음
-        this.memberList = response.data.result.content;
+        try{
+            const response = await axios.get(`${process.env.VUE_APP_API_BASE_URL}/member/list`); // {headers: headers}가 들어간 것과 같음 -> {headers}빼줬음
+            this.memberList = response.data.result.content;
+        }catch(e){
+            console.log(e);
+        }
     }
 }
 </script>
