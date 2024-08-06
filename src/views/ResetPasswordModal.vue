@@ -67,14 +67,13 @@ export default{
             // password 재설정
             // member/reset-password
             try{
-                await axios.patch(`${process.env.VUE_APP_API_BASE_URL}/member/reset-password`, body);
+                const response = await axios.patch(`${process.env.VUE_APP_API_BASE_URL}/member/reset-password`, body);
+                console.log(response.data);
                 alert("정상 변경 처리 되었습니다.");
             }catch(e){
                 console.log(e);
                 alert(e.response?.data?.error_message || "입력값을 확인해주세요");
             }
-            
-
         },
         closeModal(){
             // closeModal을 누르는 순간 LoginPage에 false 전달
