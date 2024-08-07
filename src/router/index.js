@@ -7,6 +7,7 @@ import {createRouter, createWebHistory} from 'vue-router';
 import { practiceRouter } from './practiceRouter';
 import { memberRouter } from './memberRouter';
 import { productRouter } from './productRouter';
+import {orderRouter} from './orderRouter';
 
 const routes = [
     // {
@@ -19,7 +20,8 @@ const routes = [
     // practiceRouter.js파일을 갖다가 복사붙여넣기 한 것과 똑같은 효과(스프레드 문법)
     ...practiceRouter,
     ...memberRouter,
-    ...productRouter
+    ...productRouter,
+    ...orderRouter
 ]
 
 const router = createRouter({
