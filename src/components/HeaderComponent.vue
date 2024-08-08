@@ -16,7 +16,7 @@
                 </v-col>
                 <v-col class="d-flex justify-end">
                     <!-- 오른쪽 정렬 -->
-                    <v-btn v-if="isLogin" :to="{path:'/ordercart'}">장바구니</v-btn>
+                    <v-btn v-if="isLogin" :to="{path:'/order/cart'}">장바구니({{ getTotalQuantity }})</v-btn>
                     <v-btn :to="{path:'/product/list'}">상품목록</v-btn>
                     <v-btn v-if="isLogin" :to="{path:'/mypage'}">마이페이지</v-btn>
                     <v-btn v-if="!isLogin" :to="{path:'/member/create'}">회원가입</v-btn>
@@ -29,12 +29,16 @@
 </template>
 
 <script>
-export default {
+import { mapGetters } from 'vuex';
+export default { 
     data(){
         return{
             userRole: null,
             isLogin: false
         }
+    },
+    computed:{
+        ...mapGetters(['getTotalQuantity'])
     },
     created(){
         // 현재 로그인한 사용자가 일반user인지 admin인지 확인하기 위해서 created될때 localStorage

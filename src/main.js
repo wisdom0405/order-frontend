@@ -7,6 +7,9 @@ import vuetify from './plugins/vuetify'; // . 쓰면 현재 폴더 기준 경로
 import '@mdi/font/css/materialdesignicons.css'
 // createApp(App).mount('#app') // mount : app.vue파일을 빌드해서 mount
 import axios from 'axios';
+import store from './store/index.js'; // 전역상태관리를 위한 폴더 전부 import
+
+
 const app = createApp(App);
 
 // axios 요청 인터셉터를 설정하여 모든 요청에 액세스 토큰을 포함한다.
@@ -47,6 +50,7 @@ axios.interceptors.response.use(
     }
 
 )
+app.use(store);
 app.use(router);
 app.use(vuetify);
 app.mount('#app');
