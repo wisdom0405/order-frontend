@@ -7,7 +7,7 @@
                     <!-- 왼쪽 정렬 -->
                     <v-btn :to="{path:'/member/list'}">회원관리</v-btn>
                     <v-btn :to="{path:'/product/manage'}">상품관리</v-btn>
-                    <v-btn :to="{path:'/order/list'}">실시간주문</v-btn>
+                    <v-btn href="/order/list">실시간주문({{ liveQuantity }})</v-btn> 
                     </div>
                 </v-col>
                 <v-col class="text-center">
@@ -30,11 +30,14 @@
 
 <script>
 import { mapGetters } from 'vuex';
+// 서버와 실시간 알림 서비스를 위한 의존성 추가 필요
+import {EventSourcePolyfill} from 'event-source-polyfill';
 export default { 
     data(){
         return{
             userRole: null,
-            isLogin: false
+            isLogin: false,
+            liveQuantity: 0 // 실시간 주문 개수
         }
     },
     computed:{
@@ -46,6 +49,20 @@ export default {
         if(token){
             this.isLogin = true;
             this.userRole = localStorage.getItem("role");
+        }
+        if(this.userRole === 'ADMIN'){
+            let sse = new EventSourcePolyfill(`${process.env.VUE_APP_API_BASE_URL}/subscribe`, {headers: {Authorization: `Bearer ${token}`}});
+            sse.addEventListener('connect', (event)=> {
+                console.log(event)
+            })
+            sse.addEventListener('ordered', (event)=> {
+                console.log(event.data)
+                this.liveQuantity ++;
+            })
+            sse.onerror = (error) => {
+                console.log(error);
+                sse.close();
+            }
         }
     },
     methods:{

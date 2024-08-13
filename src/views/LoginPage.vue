@@ -86,6 +86,7 @@ export default {
                 localStorage.setItem('refreshToken',refreshToken);
                 localStorage.setItem('role', role); // jwt decoder 툴을 이용해서 페이로드 parsing
                 // this.$router.push("/"); 
+
                 window.location.href = "/";   
             }catch(e){
                 const error_message = e.response.data.error_message;

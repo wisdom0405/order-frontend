@@ -48,12 +48,8 @@ export default{
             this.$store.dispatch("clearCart");
         },
         async orderCreate(){
-            const orderProducts = Object.keys(this.selected).filter(key => this.selected[key])
-                                .map(key => {
-                                    const product = this.getProductsInCart.find(p => p.id == key)
-                                    return {productId:product.id, productCount:product.quantity};
-                                })
-
+            const orderProducts = this.getProductsInCart.map(p=> {return {productId: p.id, productCount: p.quantity}});
+            console.log(orderProducts);
             if(orderProducts.length < 1){
                 alert("주문대상 물건이 없습니다.");
                 return;
@@ -69,6 +65,8 @@ export default{
             try{
                 await axios.post(`${process.env.VUE_APP_API_BASE_URL}/order/create`, orderProducts);
                 alert("주문완료되었습니다.");
+                this.clearCart();
+                
             }catch(e){
                 alert("주문실패되었습니다.");
             }
